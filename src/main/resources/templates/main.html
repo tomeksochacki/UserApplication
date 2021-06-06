@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Application</title>
+    <link rel="stylesheet" href="/main.css"/>
+    <link rel="stylesheet" href="/commons.css"/>
+</head>
+<body>
+    <div th:replace="fragments.html :: logo"></div>
+    <div th:replace="fragments.html :: menu"></div>
+    <div id="content">
+        <form id="finder" method="post" action="/find">
+            <input type="text" name="pattern">
+            <input type="submit" value="Wyszukaj">
+        </form>
+        <th:block th:each="user : ${users}">
+            <div class="user">
+                <p th:text="'Name: ' + ${user.name}" class="user-name"></p>
+                <p th:text="'Surname: ' + ${user.surname}" class="user-surname"></p>
+                <div class="user-info">
+                    <div th:text="'Age: ' + ${user.age}"></div>
+                    <div th:text="'Phone number: ' + ${user.phoneNumber}"></div>
+                    <div th:text="'Role: ' + ${user.role}"></div>
+                    <div th:if="${role?.name() == 'ADMIN'}"><a th:href="@{/editUser/{phoneNumber}(phoneNumber=${user.phoneNumber})}">edytuj</a></div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Application</title>
+    <link rel="stylesheet" href="/addUser.css"/>
+    <link rel="stylesheet" href="/commons.css"/>
+    <script src="/addUser.js"></script>
+</head>
+<body>
+<div th:replace="fragments.html :: logo"></div>
+<div th:replace="fragments.html :: menu"></div>
+<div id="content">
+    <form id="add-user-form" method="post" onsubmit="return validate()">
+        <div th:if="${info != null}" th:text="${info}" class="error-info"></div>
+        <input type="text" placeholder="Name" th:field="*{user.name}" id="name-input">
+        <input type="text" placeholder="Surname" th:field="*{user.surname}" id="surname-input">
+        <input type="text" placeholder="Age" th:field="*{user.age}" id="age-input">
+        <input type="text" placeholder="Phone number" th:field="*{user.phoneNumber}" id="phoneNumber-input">
+        <input type="text" placeholder="Role" th:field="*{user.role}" id="role-input">
+        <input type="submit" value="Wyślij">
+    </form>
+</div>
+</body>
+</html>
